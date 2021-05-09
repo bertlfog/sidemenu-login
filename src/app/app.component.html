@@ -1,0 +1,92 @@
+<ion-app [class.dark-theme]="darkTheme">
+  <ion-split-pane when="md" contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      
+      <ion-content>
+        <h1>FogCM</h1>
+        
+        <ion-list id="inbox-list" *ngIf="auth.isAuthenticated">
+          <ion-list-header>Member</ion-list-header>
+          
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of memberPages; let i = index">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <ion-list id="inbox-list" *ngIf="auth.isAuthenticated && isBoardMember">
+          <ion-list-header>Board</ion-list-header>
+          
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of boardPages; let i = index">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <ion-list *ngIf="auth.isAuthenticated" lines="none">
+          <ion-list-header>
+            Account
+          </ion-list-header>
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/account" routerLinkActive="active" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="person"></ion-icon>
+              <ion-label>
+                Account
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item button (click)="logout()" detail="false">
+              <ion-icon slot="start" name="log-out"></ion-icon>
+              <ion-label>
+                Logout
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+        </ion-list>
+
+        <ion-list *ngIf="!auth.isAuthenticated" lines="none">
+          <ion-list-header>
+            Account
+          </ion-list-header>
+
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/login" routerLinkActive="active" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="log-in"></ion-icon>
+              <ion-label>
+                Login
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <!-- <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/signup" routerLinkActive="active" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="person-add"></ion-icon>
+              <ion-label>
+                Signup
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle> -->
+
+        </ion-list>
+
+        <ion-item>
+          <ion-icon slot="start" name="moon-outline"></ion-icon>
+          <ion-label>
+            Dark Mode {{darkTheme}}
+          </ion-label>
+          <ion-toggle [(ngModel)]="darkTheme"></ion-toggle>
+        </ion-item>
+        
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

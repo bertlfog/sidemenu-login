@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <ion-label>{{ error }}</ion-label>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="LogIn()">
+    <ion-item>
+      <ion-label position="floating">Username</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" formControlName="pwd"></ion-input>
+    </ion-item>
+    <ion-button type="submit" expand="block" (click)="LogIn()">Login</ion-button>
+  </form>
+  <ion-item><ion-label>other Login options:</ion-label></ion-item>
+  <ion-button expand="block" (click)="LogInWithGoogle()">
+    <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp; Login with Google Account
+  </ion-button>
+</ion-content>
