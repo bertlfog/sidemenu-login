@@ -5,13 +5,7 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyArIA-AkpxklJKD1QYf8r8PtMTfUqvO11E",
-    authDomain: "fog-fm.firebaseapp.com",
-    projectId: "fog-fm",
-    storageBucket: "fog-fm.appspot.com",
-    messagingSenderId: "249427780272",
-    appId: "1:249427780272:web:c87623e4e482770e3b1175",
-    measurementId: "G-SWJCV1704Q"
+    instruction: "insert firebase config here"
   }
 };
 
